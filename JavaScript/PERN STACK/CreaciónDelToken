@@ -1,0 +1,20 @@
+importar  {  grupo  }  desde  "../db.js"
+importar  bcrypt  desde  'bcrypt' ;  //importamos bcrypt
+importar  {  createAccessToken  }  desde  "../libs/jwt.js" ;
+
+exportar  inicio de sesión constante  = ( req , res ) => res . enviar ( 'ingresando' ) ;     
+
+@@ -13,8 +14,12 @@ exportar registro constante = async (req, res) => {
+
+         resultado  constante =  esperar  grupo . query ( "INSERTAR EN usuarios (nombre, correo electrónico, contraseña) VALORES ($1, $2, $3) REGRESANDO *" ,  [ nombre ,  correo electrónico ,  contraseña hash ] ) ;  //guardamos la contraseña ya hasheada
+
+        const  token  =  espera  createAccessToken ( { id : resultado . filas [ 0 ] . id  } ) ;
+        consola . registro ( resultado ) ;
+        devolver  resolución . json ( resultado . filas [ 0 ] ) ;
+        //return res.json(result.rows[0]);
+        devolver  resolución . json ( {
+            ficha : ficha ,
+        } ) ;
+    }  captura  ( error )  {
+        si ( error . código  ===  "23505" ) {
+            devolver  resolución . estado ( 400 ) . json ( { mensaje : "El correo ya esta registrado" } )
