@@ -1,0 +1,8 @@
+function hola(nombre){
+    return new Promise(function (resolve,reject){
+        setTimeout(function() {
+            console.log("hola " + nombre);
+            resolve(nombre);
+        }, 1000); 
+    });
+}
