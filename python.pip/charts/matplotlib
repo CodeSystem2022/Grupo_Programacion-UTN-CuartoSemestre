@@ -1,0 +1,3 @@
+pip3 install matplotlib
+
+#para ver librerias pip3 freeze
