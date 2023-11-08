@@ -5,8 +5,12 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-html{
-    scroll-behavior: smooth;
+::-webkit-scrollbar{
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: grey;
 }
 
 section{
@@ -797,18 +801,3 @@ footer .end span{
     color: #fac031;
     margin-left: 10px;
 }
-
-::-webkit-scrollbar{
-    width: 13px;
-}
-
-::-webkit-scrollbar-track{
-    border-radius: 15px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-}
-
-::-webkit-scrollbar-thumb{
-    color: #fac031;
-    border-radius: 15px;
-}
-
