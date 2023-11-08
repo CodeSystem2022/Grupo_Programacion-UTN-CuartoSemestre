@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
+    <title>Resto Bar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    
+    <section id="Home">
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='image/logo1.jpeg') }}">
+            </div>
+
+             <!-- Muestra el mensaje si está presente -->
+            {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+                {{ mensaje }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#Nosotros">Nosotros</a></li>
+                <li><a href="#Menu">Menu</a></li>
+                <li><a href="#Galeria">Galería</a></li>
+                <li><a href="#Reseña">Reseña</a></li>
+                
+            </ul>
+            
+                
+            <div id="carrito_contenedor">
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping" id="carrito_compras"></i>
+                <a href="{{ url_for('ver_carrito') }}">Ver carrito</a>
+            </div>
+        </nav>
+
+        <div class="main">
+            <div class="men_text">
+                <h1>"La Última<span>Cena"</span><br></h1>
+
+            </div>
+
+            <div class="main_image">
+                <img src="{{ url_for('static', filename='image/comidas.jpg') }}">
+            </div>
+        </div>
+
+        <p>
+            RestoBar es un lugar donde se puede disfrutar de una variedad de platos rápidos y
+            sabrosos, preparados con ingredientes de calidad y servidos con amabilidad y eficiencia.
+            RestoBar es un restaurante de comida rápida conocido por su buena comida y excelente
+            servicio. Nuestro objetivo es ofrecer a nuestros clientes una experiencia culinaria
+            memorable y deliciosa.
+        </p>
+
+        <div class="main_btn">
+            <a href="#Menu">Order Now</a>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+    </section>
+
+    <!-- Nosotros -->
+    <div class="about" id="Nosotros">
+        <div class="about_main">
+
+            <div class="image">
+                <img src="{{ url_for('static', filename='image/about_comida.jpg')}}">
+            </div>
+
+            <div class="about_text">
+                <h1><span>Sobre</span>Nosotros</h1>
+                <h3>Porqué elegirnos?</h3>
+                <p>
+                    Nuestro restobar ofrece una experiencia culinaria única con platos de alta calidad, un ambiente
+                    acogedor y un servicio excepcional. Ven y disfruta de momentos especiales con nosotros.
+                </p>
+                
+                <a href="#Menu" class="about_btn">Order Now</a>
+            </div>
+
+            
+        </div>
+    </div> <!-- Fin Nosotros-->
+
+
+    <!-- Menu -->
+    <div class="menu" id="Menu">
+        <h1>Nuestro<span>Menu</span></h1>
+
+        <div class="menu_box">
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/hamburguesa.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Hamburguesas</h2>
+                    <p>
+                        Con carne a la parrilla, lechuga, tomate, cebolla caramelizada, se sirve con papas doradas y
+                        salsa especial.
+                    </p>
+                    <h3>$3.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-hamburguesas" onsubmit="return agregarAlCarrito('Hamburguesas', 1)">
+                        <input type="hidden" name="producto_id" value="Hamburguesas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                        
+                    </div>                   
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/pizzas.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Pizzas</h2>
+                    <p>
+                        Nuestras pizzas variadas ofrecen una deliciosa variedad de sabores en una base de masa fina y
+                        crujiente.
+                    </p>
+                    <h3>$3.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-pizzas" onsubmit="return agregarAlCarrito('Pizzas', 2)">
+                        <input type="hidden" name="producto_id" value="Pizzas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script> 
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/pasta.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Pastas</h2>
+                    <p>
+                        Son una deliciosa experiencia. Con ingredientes frescos y salsas caseras, ofrecemos opciones
+                        clásicas y gourmet.
+                    </p>
+                    <h3>$5.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                        <form id="agregar-carrito-form-pastas" onsubmit="return agregarAlCarrito('Pastas', 3)">
+                            <input type="hidden" name="producto_id" value="Pastas">
+                            <input type="hidden" name="action" value="agregar">
+                            <button type="submit" class="icon-btn">Agregar al carrito</button>
+                        </form>
+                        
+                        <script>
+                            function agregarAlCarrito(nombre_producto, producto_id) {
+                                // Realiza la llamada AJAX para agregar al carrito
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                    success: function(response) {
+                                        
+                                    },
+                                    error: function() {
+    
+                                    }
+                                });
+                        
+                                // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                                return false;
+                            }
+                        </script> 
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/parrillada.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Parrillada para 2</h2>
+                    <p>
+                        Con cortes premium y sazón experta, satisfacen todos los gustos
+                    </p>
+                    <h3>$9.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                        <form id="agregar-carrito-form-parrillada" onsubmit="return agregarAlCarrito('Parrillada', 4)">
+                            <input type="hidden" name="producto_id" value="Parrillada">
+                            <input type="hidden" name="action" value="agregar">
+                            <br>
+                            <button type="submit" class="icon-btn">Agregar al carrito</button>
+                        </form>
+                        
+                        <script>
+                            function agregarAlCarrito(nombre_producto, producto_id) {
+                                // Realiza la llamada AJAX para agregar al carrito
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                    success: function(response) {
+                                        
+                                    },
+                                    error: function() {
+    
+                                    }
+                                });
+                        
+                                // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                                return false;
+                            }
+                        </script>     
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/picada.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Tabla de Picada</h2>
+                    <p>
+                        Con una selección de quesos, embutidos y acompañamientos de primera calidad, ofrecemos opciones
+                        para todos los paladares.
+                    </p>
+                    <h3>$8.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-tablas" onsubmit="return agregarAlCarrito('Tablas', 5)">
+                        <input type="hidden" name="producto_id" value="Tablas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/ensaladas.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Ensaladas</h2>
+                    <p>
+                        Con ingredientes de alta calidad y aderezos caseros, ofrecemos opciones para todos los gustos.
+                    </p>
+                    <h3>$5.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-ensaladas" onsubmit="return agregarAlCarrito('Ensaladas', 6)">
+                        <input type="hidden" name="producto_id" value="Ensaladas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/pescado.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Pescados</h2>
+                    <p>
+                        Pescado fresco y preparación experta, ofrecemos opciones que satisfacen todos los apetitos
+                    </p>
+                    <h3>$12.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-pescados" onsubmit="return agregarAlCarrito('Pescados', 7)">
+                        <input type="hidden" name="producto_id" value="Pescados">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/pizzas.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Pizzanesa</h2>
+                    <p>
+                        Con sabores auténticos y ingredientes de calidad, ofrecemos opciones para todos los gustos.
+                    </p>
+                    <h3>$6.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-pizzanesas" onsubmit="return agregarAlCarrito('Pizzanesas', 8)">
+                        <input type="hidden" name="producto_id" value="Pizzanesas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                    </div>
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/empanadas.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Empanadas</h2>
+                    <p>
+                        Rellenos caseros y masa fresca, ofrecemos variedad de sabores.
+                    </p>
+                    <h3>$500</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                    <!-- Formulario para agregar al carrito -->
+                    <form id="agregar-carrito-form-empanadas" onsubmit="return agregarAlCarrito('Empanadas', 9)">
+                        <input type="hidden" name="producto_id" value="Empanadas">
+                        <input type="hidden" name="action" value="agregar">
+                        <button type="submit" class="icon-btn">Agregar al carrito</button>
+                    </form>
+                    
+                    <script>
+                        function agregarAlCarrito(nombre_producto, producto_id) {
+                            // Realiza la llamada AJAX para agregar al carrito
+                            $.ajax({
+                                type: 'POST',
+                                url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                success: function(response) {
+                                    
+                                },
+                                error: function() {
+
+                                }
+                            });
+                    
+                            // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                            return false;
+                        }
+                    </script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/tostados.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Tostados</h2>
+                    <p>
+                        Con ingredientes frescos y sabrosos, ofrecemos opciones para todos los gustos
+                    </p>
+                    <h3>$4.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                        <form id="agregar-carrito-form-tostados" onsubmit="return agregarAlCarrito('Tostados', 10)">
+                            <input type="hidden" name="producto_id" value="Tostados">
+                            <input type="hidden" name="action" value="agregar">
+                            <button type="submit" class="icon-btn">Agregar al carrito</button>
+                        </form>
+                        
+                        <script>
+                            function agregarAlCarrito(nombre_producto, producto_id) {
+                                // Realiza la llamada AJAX para agregar al carrito
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                    success: function(response) {
+                                        
+                                    },
+                                    error: function() {
+    
+                                    }
+                                });
+                        
+                                // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                                return false;
+                            }
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/lomo.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Lomo al Horno</h2>
+                    <p>
+                        Ingredientes de calidad y cocción cuidadosa, ofrecemos variedad de sabores.
+                    </p>
+                    <h3>$10.000</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- Formulario para agregar al carrito -->
+                        <form id="agregar-carrito-form-lomo" onsubmit="return agregarAlCarrito('Lomo', 11)">
+                            <input type="hidden" name="producto_id" value="Lomo">
+                            <input type="hidden" name="action" value="agregar">
+                            <button type="submit" class="icon-btn">Agregar al carrito</button>
+                        </form>
+                        
+                        <script>
+                            function agregarAlCarrito(nombre_producto, producto_id) {
+                                // Realiza la llamada AJAX para agregar al carrito
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                    success: function(response) {
+                                        
+                                    },
+                                    error: function() {
+    
+                                    }
+                                });
+                        
+                                // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                                return false;
+                            }
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="menu_card">
+
+                <div class="menu_image">
+                    <img src="{{ url_for('static', filename='image/polloconpapas.jpg') }}">
+                </div>
+
+                <div class="small_card">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="menu_info">
+                    <h2>Pollo con papas</h2>
+                    <p>
+                        Pollo tierno y papas doradas, ofrecemos opciones que satisfacen todos los apetitos.
+                    </p>
+                    <h3>$8.500</h3>
+                    <div class="menu_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <form id="agregar-carrito-form-pollo" onsubmit="return agregarAlCarrito('Pollo', 12)">
+                            <input type="hidden" name="producto_id" value="Pollo">
+                            <input type="hidden" name="action" value="agregar">
+                            <button type="submit" class="icon-btn">Agregar al carrito</button>
+                        </form>
+                        
+                        <script>
+                            function agregarAlCarrito(nombre_producto, producto_id) {
+                                // Realiza la llamada AJAX para agregar al carrito
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/agregar_al_carrito/' + nombre_producto + '/' + producto_id,
+                                    success: function(response) {
+                                        
+                                    },
+                                    error: function() {
+    
+                                    }
+                                });
+                        
+                                // Devuelve false para evitar que el formulario se envíe de forma predeterminada
+                                return false;
+                            }
+                        </script>
+                    </div>
+                </div>               
+            </div> <!--Fin Menu Card-->
+        </div> <!--Fin Menu Box-->
+    </div> <!-- Fin Menu -->
+
+    <!--Galería-->
+    <div class="gallary" id="Galeria">
+        <h1>Nuestra<span>Galería</span></h1>
+
+        <div class="gallary_image_box">
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary.jpg') }}">
+
+                <h3>Cerdo Gourmet</h3>
+                <p>
+                    Una costilla de cerdo tierna y caramelizada se sirve con un puré mixto de coliflor y patatas, en una
+                    combinación de sabores y texturas exquisitas.
+                </p>
+            </div>
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary_guisado_cangrejo.jpg') }}">
+
+                <h3>Guisado de Cangrejo</h3>
+                <p>
+                    Guisado de cangrejo sublime, con la carne de cangrejo en su punto más jugoso y tierno, se sirve con
+                    un puré mixto de coliflor y patatas, creando una fusión de sabores y texturas extraordinaria.
+                </p>
+            </div>
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary_filet_parrilla.jpg') }}">
+
+                <h3>Salmón a la Parrilla</h3>
+                <p>
+                    Un lujoso salmón a la parrilla, con su piel crujiente y su carne jugosa, se presenta junto a unas
+                    batatas asadas, combinando sabores y texturas en una experiencia gastronómica excepcional.
+                </p>
+            </div>
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary_paella.jpg') }}">
+
+                <h3>Paella</h3>
+                <p>
+                    Una paella gourmet con arroz perfectamente cocido y una variedad de mariscos, acompañada de verduras
+                    frescas y el distintivo toque de azafrán.
+                </p>
+            </div>
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary_pizzasGourmet.jpg') }}">
+
+                <h3>Pizzas Gourmet</h3>
+                <p>
+                    Una pizza gourmet, con una masa fina y crujiente, se cubre con una selección de ingredientes
+                    excepcionales, desde trufa negra hasta jamón de Parma, creando una explosión de sabores y texturas
+                    en cada bocado.
+                </p>
+            </div>
+
+            <div class="gallary_image">
+                <img src="{{ url_for('static', filename='image/gallary_ramen.jpg') }}">
+
+                <h3>Ramen</h3>
+                <p>
+                    Un ramen gourmet con fideos en caldo aromático y ingredientes de alta calidad como cerdo y huevo,
+                    ofrece una experiencia de sabor excepcional.
+                </p>
+            </div>
+        </div>
+    </div> <!--Fin Galería-->
+
+    <!-- Order -->
+
+    <div class="order" id="Order">
+
+        <h1><span>Ordena</span>Ahora</h1>
+
+        <div class="order_main">
+
+            <div class="order_img">
+                <img src="{{ url_for('static', filename='image/order.jpg') }}">
+            </div>
+
+            <form action="#">
+                <div class="input">
+                    <p>Nombre</p>
+                    <input type="text" placeholder="Nombre">
+                </div>
+
+                <div class="input">
+                    <p>Email</p>
+                    <input type="email" placeholder="Email">
+                </div>
+
+                <div class="input">
+                    <p>Teléfono</p>
+                    <input placeholder="Teléfono">
+                </div>
+
+                <div class="input">
+                    <p>Presupuesto</p>
+                    <input type="number" placeholder="Presupuesto">
+                </div>
+
+                <div class="input">
+                    <p>Orden</p>
+                    <input placeholder="Orden">
+                </div>
+
+                <div class="input">
+                    <p>Dirección</p>
+                    <input placeholder="Dirección">
+                </div>
+                <a href="#" class="order_btn">Order Now</a>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Team -->
+    <div class="team">
+        <h1>Nuestro<span>Equipo</span></h1>
+
+        <div class="team_box">
+            <div class="perfil">
+                <img src="{{ url_for('static', filename='image/chef.jpg') }}">
+            
+                
+                <div class="info">
+                    <h2 class="nombre">Chef Ana</h2>
+                    <p class="bio">
+                        "El secreto de una gran comida radica en el amor que le pones."
+                    </p>
+
+                    <div class="team_icon">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil">
+                <img src="{{ url_for('static', filename='image/chef3.jpg') }}">
+            
+                
+                <div class="info">
+                    <h2 class="nombre">Chef Mario</h2>
+                    <p class="bio">"La cocina es mi lienzo,y cada plato es una obra de arte en sí mismo."</p>
+
+                    <div class="team_icon">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil">
+                <img src="{{ url_for('static', filename='image/chef2.jpg') }}">
+            
+                
+                <div class="info">
+                    <h2 class="nombre">Chef Tomas</h2>
+                    <p class="bio">"La cocina es mi forma de contar historias, sabores que narran experiencias."</p>
+
+                    <div class="team_icon">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div><!--Fin Team-->
+
+
+    <!--Footer-->
+    <footer>
+        <div class="footer_main">
+            <div class="footer_tag">
+                <h2>Ubicación</h2>
+                <p>Mendoza</p>
+                <p>Rosario</p>
+                <p>Buenos Aires</p>
+            </div>
+        
+                    
+            <div class="footer_tag">
+                <h2>Contacto</h2>
+                <p>+54 341-12345678</p>
+                <p>+54 2627-12345678</p>
+                <p>RestoBarMendoza@gmail.com</p>
+                <p>RestoBarRosario@gmail.com</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Servicios</h2>
+                <p>Delivery</p>
+                <p>Pagos</p>
+                <p>Servicio 24/7</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Redes</h2>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+        </div>
+
+        <p class="end">Diseñado por<span><i class="fa-brands fa-teamspeak"></i>Grupo Programación UTN</span></p>
+    </footer> <!--Fin Footer-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</body>
+</html>

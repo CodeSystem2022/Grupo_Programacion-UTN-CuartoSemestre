@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <title>Checkout</title>
+</head>
+<header>
+    <h1>Checkout</h1>
+    <img src="{{ url_for('static', filename='image/logo1.jpeg') }}">
+</header>
+<style>
+    img{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+}
+    body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+.form-cbu{
+
+}
+
+</style>
+<body>
+    <div class="container">
+        
+        <form method="POST" action="{{ url_for('procesar_pago') }}" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="first_name">Nombre</label>
+                {{ form.first_name(class="form-control", placeholder="nombre") }}
+            </div>
+            <div class="form-group">
+                <label for="last_name">Apellido</label>
+                {{ form.last_name(class="form-control", placeholder="apellido") }}
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Teléfono</label>
+                {{ form.phone_number(class="form-control", placeholder="teléfono") }}
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                {{ form.email(class="form-control", placeholder="correo") }}
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección</label>
+                {{ form.address(class="form-control", placeholder="dirección") }}
+            </div>
+            <div class="form-group">
+                <label for="address">Total de compra $ARS</label>
+                {{ precio_total_carrito }}
+            </div>           
+            
+            <div class="form-cbu" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">
+                <label for="payment_type" style="font-weight: bold;">Datos de transferencia</label>
+                <hr style="border: 1px solid #ccc; margin: 10px 0;">
+                <h4>Razón Social</h4>
+                <p style="font-weight: bold; font-size: 16px; margin: 5px 0;">"La última cena Resto-Bar"</p>
+                <h4>CUIT</h4>
+                <p style="font-weight: bold; font-size: 16px; margin: 5px 0;">30-00000000-1</p>
+                <h4>N° cuenta</h4>
+                <p style="font-weight: bold; font-size: 16px; margin: 5px 0;">0545/12345678/3</p>
+                <h4>CBU</h4>
+                <p style="font-weight: bold; font-size: 16px; margin: 5px 0;">12345678912345678912</p>
+                <h4>Alias</h4>
+                <p style="font-weight: bold; font-size: 16px; margin: 5px 0;">Resto.Bar</p>
+            </div>
+            <br>
+            <div id="btn-pagar">
+                <a href="/">Volver a la tienda</a> 
+                <p>
+                    Subir ticket bancario:
+                
+                    <input type="file" name="archivosubido">
+                
+                </p>
+                <button type="submit" class="btn btn-primary">Pagar</button>
+               
+            </div>
+        </form>
+    </div>
+    <!--
+    <script>
+        const mp = new MercadoPago('YOUR_PUBLIC_KEY');
+        const bricksBuilder = mp.bricks();
+        mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "<PREFERENCE_ID>",
+        },
+        });
+    </script>-->
+</html>

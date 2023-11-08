@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
+    <title>Carrito de Compras</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        header{
+            border-bottom: #000 solid 3px;
+            text-align: center;
+        }
+        header img{
+            width: 10%;
+            height: 10%;
+        }
+        .formulario_compra {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            max-width: 500px; /* Puedes ajustar el ancho según tus necesidades */
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        p {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #fac031;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #fac031;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        button {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+            text-decoration: none;
+            background-color: #fac031;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #fac031;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+        <img src="{{ url_for('static', filename='image/logo1.jpeg') }}">
+    </header>
+    <div class="formulario_compra">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Precio Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>${{ producto.precio }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>${{ producto.precio_total }}</td>
+                    <td>
+                        <div class="button-container">
+                            <form method="POST" action="/actualizar_carrito">
+                                <input type="hidden" name="producto_id" value="{{ producto.nombre }}">
+                                <input type="hidden" name="action" value="sumar">
+                                <button type="submit" name="action" value="sumar">+</button>
+                            </form>
+                            <form method="POST" action="/actualizar_carrito">
+                                <input type="hidden" name="producto_id" value="{{ producto.nombre }}">
+                                <input type="hidden" name="action" value="restar">
+                                <button type="submit" name="action" value="restar">-</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <p>Total: ${{ precio_total_carrito }}</p>
+
+        <div class="links">
+            <a href="/">Volver a la tienda</a>
+            <a href="/checkout">Finalizar compra</a>
+        </div>
+    </div>
+</body>
+</html>

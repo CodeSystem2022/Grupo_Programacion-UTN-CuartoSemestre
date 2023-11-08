@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <h2>{{ producto['nombre'] }}</h2>
+                <p>Precio: ${{ producto['precio'] }}</p>
+                <p>Cantidad: {{ producto['cantidad'] }}</p>
+                <form method="POST" action="/actualizar_carrito">
+                    <input type="hidden" name="producto_id" value="{{ producto['id'] }}">
+                    <button type="submit" name="action" value="sumar">Añadir otro</button>
+                    <button type="submit" name="action" value="restar">Eliminar uno</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
