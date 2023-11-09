@@ -15,14 +15,14 @@
 </head>
 
 <body>
-    
+<!-- agregar fondo gris o oscuro-->
     <section id="Home">
         <nav>
             <div class="logo">
                 <img src="{{ url_for('static', filename='image/logo1.jpeg') }}">
             </div>
 
-             <!-- Muestra el mensaje si está presente -->
+             <!-- Muestra el mensaje si la compra fue exitosa -->
             {% if mensaje %}
             <div class="alert alert-success" role="alert">
                 {{ mensaje }}
@@ -42,8 +42,9 @@
             
                 
             <div id="carrito_contenedor">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping" id="carrito_compras"></i>
+                <i class="fa-solid fa-heart" style="color: #000;"></i>
+                
+                <i class="fa-solid fa-cart-shopping" id="carrito_compras" style="color: #000;"></i>
                 <a href="{{ url_for('ver_carrito') }}">Ver carrito</a>
             </div>
         </nav>
@@ -55,7 +56,7 @@
             </div>
 
             <div class="main_image">
-                <img src="{{ url_for('static', filename='image/comidas.jpg') }}">
+                <img src="{{ url_for('static', filename='image/comidappal.png') }}">
             </div>
         </div>
 
@@ -68,7 +69,7 @@
         </p>
 
         <div class="main_btn">
-            <a href="#Menu">Order Now</a>
+            <a href="#Menu">Menú</a>
             <i class="fa-solid fa-angle-right"></i>
         </div>
 
@@ -90,7 +91,7 @@
                     acogedor y un servicio excepcional. Ven y disfruta de momentos especiales con nosotros.
                 </p>
                 
-                <a href="#Menu" class="about_btn">Order Now</a>
+                <a href="#Menu" class="about_btn">Menú</a>
             </div>
 
             
@@ -100,7 +101,7 @@
 
     <!-- Menu -->
     <div class="menu" id="Menu">
-        <h1>Nuestro<span>Menu</span></h1>
+        <h1>Nuestro<span>Menú</span></h1>
 
         <div class="menu_box">
             <div class="menu_card">
@@ -332,7 +333,6 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star-half-stroke"></i>
-                        <!-- Formulario para agregar al carrito -->
                     <!-- Formulario para agregar al carrito -->
                     <form id="agregar-carrito-form-tablas" onsubmit="return agregarAlCarrito('Tablas', 5)">
                         <input type="hidden" name="producto_id" value="Tablas">
@@ -831,7 +831,7 @@
                     <p>Dirección</p>
                     <input placeholder="Dirección">
                 </div>
-                <a href="#" class="order_btn">Order Now</a>
+                <a href="#" class="order_btn">Menú</a>
 
             </form>
 
@@ -894,7 +894,6 @@
             </div>
         </div>    
     </div><!--Fin Team-->
-
 
     <!--Footer-->
     <footer>
