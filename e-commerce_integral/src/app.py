@@ -47,6 +47,7 @@ def home():
     mensaje = request.args.get('mensaje')
     return render_template('index.html', mensaje=mensaje)
 
+
 @app.route('/agregar_al_carrito/<string:nombre_producto>/<int:producto_id>', methods=['POST'])
 def agregar_al_carrito(nombre_producto, producto_id):
     # Verifica si el producto ya está en el carrito
@@ -58,7 +59,6 @@ def agregar_al_carrito(nombre_producto, producto_id):
         # Agrega el producto al carrito si no existe
         carrito.append({'nombre': nombre_producto, 'producto_id': producto_id, 'cantidad': 1})
 
-    print(carrito)
     # Redirige de nuevo a la página del carrito
     return redirect('/ver_carrito')
 
@@ -163,7 +163,7 @@ def ver_carrito():
     estado_carrito = 0
 
     cur=db.connection.cursor()
-    cur.execute("INSERT INTO `clientes` (`pedido_carrito`, `total_precio`, `estado_carrito`) VALUES (%s,%s,%s)",(productos_en_carrito, precio_total_carrito, estado_carrito))
+    cur.execute("INSERT INTO `clientes` (`pedido_carrito`, `total_precio`, `estado_carrito`) VALUES (%s,%s,%s)",(productos_en_carrito_json, precio_total_carrito, estado_carrito))
     cur.execute("SELECT LAST_INSERT_ID()")
     id_carrito = cur.fetchone()[0]
     session['id_carrito'] = id_carrito# Almacena el ID del carrito en la sesión
@@ -221,7 +221,7 @@ def checkout():
     
     return render_template('checkout.html', form=form, precio_total_carrito=precio_total_carrito)
 
-
+# pasar de 0 a 1
 @app.route('/procesar_pago', methods=['POST'])
 def procesar_pago():
     form = Checkout()
@@ -262,57 +262,11 @@ def procesar_pago():
 
     mensaje = "Compra exitosa. En unos minutos confirmaremos su compra a través de mensaje de WhatsApp."
     return redirect(url_for('home', mensaje=mensaje))   
-"""
-@app.route('/obtener_preference_id', methods=['POST'])
-def obtener_preference_id():
-    # Configurar tus credenciales de Mercado Pago
-    mp = mercadopago.SDK(ACCESS_TOKEN)
-
-    # Obtener la información del carrito
-    carrito = session.get('carrito', [])
-    precio_total_carrito = session['precio_total_carrito']
-
-    # Crear una lista de items para la preferencia
-    items = []
-    # Calcular el precio total del carrito
-    precio_total_carrito = sum(item['precio_total'] for item in carrito)
-
-    for producto in carrito:
-        item = {
-            "title": producto['nombre'],  
-            "quantity": producto['cantidad'],  
-            
-        }   
-        
-        items.append(item)
-        
-
-    # Crear la preferencia de pago con la lista de items
-    preference_data = {
-        "items": items,
-        "back_urls": {
-            "success": "URL_DE_EXITO",
-            "failure": "URL_DE_FALLA",
-        },
-        "total_amount": precio_total_carrito,
-    }
-
-    preference = mp.preference().create(preference_data)
-    print(preference)
-
-    if 'response' in preference and 'id' in preference['response']:
-        preference_id = preference['response']['id']
-        return jsonify({'preferenceId': preference_id})
-    else:
-        return jsonify({'error': 'No se pudo obtener el preferenceId'})
-
-    return jsonify({'preferenceId': preference_id})
-
 
 # Genera una cadena segura de 24 bytes
 # clave_secreta = secrets.token_hex(24)
 # print(clave_secreta)
-"""
+
 if __name__ == '__main__':
     app.config.from_object(config['development'])
     app.run(debug=True)
