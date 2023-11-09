@@ -161,7 +161,7 @@ def ver_carrito():
     productos_en_carrito_json = json.dumps(productos_en_carrito)
     
     estado_carrito = 0
-
+    # base de datos
     cur=db.connection.cursor()
     cur.execute("INSERT INTO `clientes` (`pedido_carrito`, `total_precio`, `estado_carrito`) VALUES (%s,%s,%s)",(productos_en_carrito_json, precio_total_carrito, estado_carrito))
     cur.execute("SELECT LAST_INSERT_ID()")
@@ -226,7 +226,7 @@ def checkout():
 def procesar_pago():
     form = Checkout()
     id_carrito = session.get('id_carrito')
-
+    id_carrito = 1
     # Verifica si se envió un archivo y lo procesa
     if 'archivosubido' in request.files:
         archivo = request.files['archivosubido']
@@ -283,7 +283,7 @@ def reservas():
         db.connection.commit()
         cur.close()
 
-        mensaje = "Reserva exitosa. En unos minutos confirmaremos su compra a través de mensaje de WhatsApp."
+        mensaje = "Reserva exitosa. En unos minutos confirmaremos su reserva a través de mensaje de WhatsApp."
 
     return redirect(url_for('home', mensaje=mensaje))
 # Genera una cadena segura de 24 bytes

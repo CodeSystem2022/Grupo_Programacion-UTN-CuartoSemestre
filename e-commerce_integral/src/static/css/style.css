@@ -106,7 +106,7 @@ section .main .men_text h1{
 
 section .main .men_text h1 span{
     margin-left: 15px;
-    color: #000;
+    color: #fac031;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     line-height: 22px;
     font-size: 70px;
@@ -346,6 +346,7 @@ section .main_btn:hover i{
 .menu .menu_box .menu_card .menu_info h3{
     text-align: center;
     margin-top: 10px;
+    color: white;
 }
 
 .menu .menu_box .menu_card .menu_info .menu_icon{
