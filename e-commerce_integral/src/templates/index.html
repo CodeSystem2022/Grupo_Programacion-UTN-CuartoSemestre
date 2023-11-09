@@ -35,7 +35,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#Nosotros">Nosotros</a></li>
                 <li><a href="#Menu">Menu</a></li>
-                <li><a href="#Galeria">Galería</a></li>
+                <li><a href="{{ url_for('galeria') }}">Galería</a></li>
                 <li><a href="#Reseña">Reseña</a></li>
                 
             </ul>
@@ -789,11 +789,11 @@
         </div>
     </div> <!--Fin Galería-->
 
-    <!-- Order -->
+    <!-- Reserva -->
 
     <div class="order" id="Order">
 
-        <h1><span>Ordena</span>Ahora</h1>
+        <h1><span>Reserva</span>Ahora</h1>
 
         <div class="order_main">
 
@@ -801,37 +801,37 @@
                 <img src="{{ url_for('static', filename='image/order.jpg') }}">
             </div>
 
-            <form action="#">
+            <form action="/reservas" method="POST">
                 <div class="input">
                     <p>Nombre</p>
-                    <input type="text" placeholder="Nombre">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
                 </div>
 
                 <div class="input">
                     <p>Email</p>
-                    <input type="email" placeholder="Email">
+                    <input type="email" id="email" name="email" placeholder="Email">
                 </div>
 
                 <div class="input">
                     <p>Teléfono</p>
-                    <input placeholder="Teléfono">
+                    <input type="tel" id="telefono" name="telefono" placeholder="Teléfono">
                 </div>
 
                 <div class="input">
                     <p>Presupuesto</p>
-                    <input type="number" placeholder="Presupuesto">
+                    <input type="number" id="presupuesto" name="presupuesto" placeholder="Presupuesto">
                 </div>
 
                 <div class="input">
                     <p>Orden</p>
-                    <input placeholder="Orden">
+                    <input type="text" id="orden" name="orden" placeholder="Orden">
                 </div>
 
                 <div class="input">
                     <p>Dirección</p>
-                    <input placeholder="Dirección">
+                    <input type="tex" id="direccion" name="direccion" placeholder="Dirección">
                 </div>
-                <a href="#" class="order_btn">Menú</a>
+                <button type="submit" style="color:#000; background-color: #fac031; margin-top: 20px; height: 40px; width: 100px;">reservas</button>
 
             </form>
 

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.gallary{
+    width: 100%;
+    padding: 0 auto; 
+    background-color: #27292b;
+    margin: 0;
+}
+.gallary-content {
+        text-align: center;
+    }
+
+.gallary h1{
+    font-size: 55px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    color: white; 
+}
+
+.gallary h1 span{
+    margin-left: 15px;
+    color: #fac031;
+    font-family: mv boli;
+}
+
+.gallary h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+
+.section{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider{
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slide{
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+
+.slide input{
+    display: none;
+}
+
+.st{
+    width: 20%;
+    transition: 2s;
+    position: relative;
+    text-align: center;
+}
+
+
+.st img{
+    width: 800px;
+    height: 500px;
+}
+
+.st a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.st h1 {
+    position: absolute;
+    top: 0; /*Ajusta la distancia desde la parte superior según tus preferencias */
+    left: 0;
+    right: 0;
+    text-align: center;
+    color:#fac031;  /*Color del texto */
+    padding: 10px;
+    text-shadow: -2px -2px 1px #000;
+}
+
+.st p {
+    position: absolute;
+    top: 100px; /*Ajusta la distancia desde la parte superior según tus preferencias */
+    left: 150px;
+    right: 60px;
+    text-align: center;
+    color:#fac031;  /*Color del texto */
+    padding: 20px;
+    text-shadow: -2px -2px 1px #000;
+    font-size: 30px;
+}
+
+.st .gallary_btn{
+    position: absolute;
+    margin-top: 150px;
+    color: #000;
+    background: #fac031;
+    padding: 7px 25px;
+    text-decoration: none;
+    opacity: 1;
+    transform: translateY(45px);
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.nav-m{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.m-btn{
+    border: 2px solid #fac031;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.m-btn:not(:last-child){
+    margin-right: 30px;
+}
+
+.m-btn:hover{
+    background-color: #fac031;
+}
+
+#radio1:checked ~.first{
+    margin-left: 0;
+}
+
+#radio2:checked ~.first{
+    margin-left: -20%;
+}
+
+#radio3:checked ~.first{
+    margin-left: -40%;
+}
+
+#radio4:checked ~.first{
+    margin-left: -60%;
+}
+
+#radio5:checked ~.first{
+    margin-left: -80%;
+}
+
+#radio6:checked ~.first{
+    margin-left: -100%;
+}
+
+.nav-auto{
+    position: absolute;
+    width: 800px;
+    margin-top: 460px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-auto div{
+    border: 2px solid #fac031;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.nav-auto div:not(:last-child){
+    margin-right: 30px;
+    justify-content: center;
+}
+
+#radio1:checked~ .nav-auto .a-b1{
+    background-color: #fac031;
+}
+
+#radio2:checked~ .nav-auto .a-b2{
+    background-color: #fac031;
+}
+
+#radio3:checked~ .nav-auto .a-b3{
+    background-color: #fac031;
+}
+
+#radio4:checked~ .nav-auto .a-b4{
+    background-color: #fac031;
+}
+
+#radio5:checked~ .nav-auto .a-b5{
+    background-color: #fac031;
+}
+
+#radio6:checked~ .nav-auto .a-b6{
+    background-color: #fac031;
+}
+    </style>
+    <!--Galería-->
+
+    <div class="gallary" id="Galeria">
+        <h1>Nuestra<span>Galería</span></h1>
+        <div class="gallary-content">
+        <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #fac031; color: #000; text-decoration: none; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;; border: 2px solid black; border-radius: 5px;">Volver a la tienda</a>
+        <section class="section">
+            <div class="slider">
+                <div class="slide">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+                    <input type="radio" name="radio-btn" id="radio5">
+                    <input type="radio" name="radio-btn" id="radio6">
+
+                    <div class="st first">
+                        <img src="{{ url_for('static', filename='image/gallary.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1 style="margin-bottom: 10px;">Cerdo Gourmet</h1>
+                            <p>Una costilla de cerdo tierna y caramelizada se sirve con un puré mixto de coliflor y patatas, en una combinación de sabores y texturas exquisitas.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>
+                        
+                    </div>
+                    <div class="st">
+                        <img src="{{ url_for('static', filename='image/gallary_filet_parrilla.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1>Salmón a la Parrilla</h1>
+                            <p>Un lujoso salmón a la parrilla, con su piel crujiente y su carne jugosa, se presenta junto a unas batatas asadas, combinando sabores y texturas en una experiencia gastronómica excepcional.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>    
+                    </div>
+                    <div class="st">
+                        <img src="{{ url_for('static', filename='image/gallary_guisado_cangrejo.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1>Guisado de Cangrejo</h1>
+                            <p>Guisado de cangrejo sublime, con la carne de cangrejo en su punto más jugoso y tierno, se sirve con un puré mixto de coliflor y patatas, creando una fusión de sabores y texturas extraordinaria.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>
+                    </div>
+
+                    <div class="st">
+                        <img src="{{ url_for('static', filename='image/gallary_pizzasGourmet.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1>Pizzas Gourmet</h1>
+                            <p>Una pizza gourmet, con una masa fina y crujiente, se cubre con una selección de ingredientes
+                                excepcionales, desde trufa negra hasta jamón de Parma, creando una explosión de sabores y texturas
+                                en cada bocado.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>
+                    </div>
+                    <div class="st">
+                        <img src="{{ url_for('static', filename='image/gallary_paella.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1>Paella</h1>
+                            <p>Una paella gourmet con arroz perfectamente cocido y una variedad de mariscos, acompañada de verduras
+                                frescas y el distintivo toque de azafrán.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>
+                    </div>
+                    <div class="st">
+                        <img src="{{ url_for('static', filename='image/gallary_ramen.jpg') }}" alt="">
+                        <div class="text-overlay">
+                            <h1>Ramen</h1>
+                            <p>Un ramen gourmet con fideos en caldo aromático e ingredientes de alta calidad como cerdo y huevo,
+                                ofrece una experiencia de sabor excepcional.</p>
+                            <a href="#" class="gallary_btn">Order Now</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-auto">
+                        <div class="a-b1"></div>
+                        <div class="a-b2"></div>
+                        <div class="a-b3"></div>
+                        <div class="a-b4"></div>
+                        <div class="a-b5"></div>
+                        <div class="a-b6"></div>
+                    </div>
+                </div>
+
+                <div class="nav-m">
+                    <label for="radio1" class="m-btn"></label>
+                    <label for="radio2" class="m-btn"></label>
+                    <label for="radio3" class="m-btn"></label>
+                    <label for="radio4" class="m-btn"></label>
+                    <label for="radio5" class="m-btn"></label>
+                    <label for="radio6" class="m-btn"></label>
+                </div>
+            </div>
+            
+        </section>
+        <script type="text/javascript">
+        var counter = 1;
+        setInterval(function(){
+            document.getElementById('radio' + counter).checked=true;
+            counter++;
+                if(counter > 6){
+                    counter = 1;
+                }
+        }, 6500);
+        </script>
+        </div>
+    </div> <!--Fin Galería-->
+</body>
+</html>
+
+  
+
+
+
+
+
+
+
+
+
