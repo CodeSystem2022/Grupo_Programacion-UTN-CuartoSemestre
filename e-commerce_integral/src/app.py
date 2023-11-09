@@ -261,8 +261,31 @@ def procesar_pago():
         carrito.clear()
 
     mensaje = "Compra exitosa. En unos minutos confirmaremos su compra a través de mensaje de WhatsApp."
+    
     return redirect(url_for('home', mensaje=mensaje))   
 
+@app.route('/galeria', methods=['GET'])
+def galeria():
+    return render_template('galeria.html')
+
+@app.route('/reservas', methods=['GET','POST'])
+def reservas():
+    mensaje = None
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        email = request.form['email']
+        telefono = request.form['telefono']
+        presupuesto = request.form['presupuesto']
+        orden = request.form['orden']
+        direccion = request.form['direccion']
+        cur = db.connection.cursor()
+        cur.execute("INSERT INTO `reservas` (nombre, email, telefono, presupuesto, orden, direccion) VALUES (%s, %s, %s, %s, %s, %s)",(nombre, email, telefono, presupuesto, orden, direccion))
+        db.connection.commit()
+        cur.close()
+
+        mensaje = "Reserva exitosa. En unos minutos confirmaremos su compra a través de mensaje de WhatsApp."
+
+    return redirect(url_for('home', mensaje=mensaje))
 # Genera una cadena segura de 24 bytes
 # clave_secreta = secrets.token_hex(24)
 # print(clave_secreta)
