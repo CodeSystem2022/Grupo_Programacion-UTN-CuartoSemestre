@@ -6,7 +6,6 @@ from werkzeug.utils import secure_filename
 from wtforms import StringField, SelectField
 from config import config
 import json
-import mercadopago
 import secrets # libreria para crear claves seguras CSRF Token
  
 app = Flask(__name__)
