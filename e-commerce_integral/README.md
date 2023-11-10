@@ -1,6 +1,8 @@
 # Proyecto de App-Web e-commerce para Restaurante-Bar "Última Cena"
 
-## Descripción)
+![img](https://github.com/CodeSystem2022/Grupo_Programacion-UTN-CuartoSemestre/blob/main/e-commerce_integral/src/static/image/logo1.jpeg)
+
+## Descripción
 La aplicación web "Última Cena" es una plataforma de comercio electrónico diseñada para el restaurante-bar "Última Cena". El objetivo principal de esta aplicación es aumentar las ventas, facilitar las reservas de mesas y mostrar el menú del bar de una manera atractiva y convincente. Los clientes potenciales podrán explorar el menú, realizar pedidos en línea, reservar mesas y conocer las razones por las que deberían visitar nuestro establecimiento.
 
 ## Características Clave
