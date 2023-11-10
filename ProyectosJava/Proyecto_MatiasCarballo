@@ -1,0 +1,9 @@
+Service:
+
+En el desarrollo de software, un "Service" (o servicio) generalmente se refiere a una clase o componente que realiza operaciones específicas y lógicas de negocio. Los servicios encapsulan la funcionalidad relacionada y se utilizan para separar la lógica de negocio de la lógica de presentación o la interacción con la base de datos. Pueden realizar operaciones complejas, procesamiento de datos o coordinar la interacción entre diferentes componentes de la aplicación.
+Controller:
+
+Un "Controller" (o controlador) es una parte de la arquitectura de software que maneja las solicitudes del usuario y la interacción con la lógica de negocio. En el contexto de un patrón de diseño como Modelo-Vista-Controlador (MVC), un controlador recibe las solicitudes del usuario, interpreta los datos de entrada y coordina con el modelo y la vista para realizar las operaciones necesarias. Es responsable de dirigir el flujo de control en la aplicación.
+Exceptions:
+
+"Exceptions" (o excepciones) se refiere a eventos inesperados o errores que pueden ocurrir durante la ejecución de un programa. Las excepciones son utilizadas para manejar situaciones excepcionales que pueden surgir, como errores de tiempo de ejecución, fallos de red o intentos de acceder a recursos inexistentes. En programación, el manejo de excepciones implica escribir código que pueda detectar y responder adecuadamente a estos eventos, mejorando la robustez y la capacidad de recuperación de una aplicación.
