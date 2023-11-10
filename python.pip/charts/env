@@ -1,0 +1,8 @@
+comando para creación de entorno virtual
+python3 -m venv venv
+
+comando para activar entorno virtual
+source venv/bin/activate
+
+comando para ver librerias
+pip3 freeze
