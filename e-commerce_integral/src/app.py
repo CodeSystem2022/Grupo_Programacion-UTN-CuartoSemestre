@@ -13,34 +13,11 @@ app = Flask(__name__)
 db = MySQL(app)
 
 app.config['SECRET_KEY'] = '7811cb752097e9ea4a8ca184582ef8649a27aaab6648fc41' #clave secreta CSRF Token
-# token de mercado pago
-sdk = mercadopago.SDK("TEST-5622517270371211-101721-e12ed1d760b7ca0ff3573b39953fddb9-144586495")
-ACCESS_TOKEN = "TEST-5622517270371211-101721-e12ed1d760b7ca0ff3573b39953fddb9-144586495"
 
 carrito = []
 productos_para_preferencia = []
 precio_total_carrito = 0
 
-
-# Crea ítems en la preferencia
-preference_data = {
-    "items": [
-        {
-            "title": "Mi producto",
-            "quantity": 1,
-            "unit_price": 75.56
-        },
-        {
-            "title": "Mi producto2",
-            "quantity": 2,
-            "unit_price": 96.56
-        }
-    ]
-}
-
-# Crea la preferencia
-preference_response = sdk.preference().create(preference_data)
-preference = preference_response["response"]
 
 @app.route('/', methods=['GET','POST'])
 def home():
